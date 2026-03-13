@@ -1,5 +1,10 @@
 import joblib
 import os
+import re
+
+def clean_text(text):
+    text = re.sub(r'[^a-zA-Z\s]', '', str(text)).lower()
+    return text
 
 def classify_email(email_text):
     # Cargar modelos
@@ -7,7 +12,8 @@ def classify_email(email_text):
     vec = joblib.load(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'vectorizer.pkl'))
     
     # Transformar y predecir
-    email_vec = vec.transform([email_text.lower()])
+    cleaned = clean_text(email_text)
+    email_vec = vec.transform([cleaned])
     prediction = model.predict(email_vec)[0]
     
     prob = model.predict_proba(email_vec)[0] # Probabilidad de cada clase
