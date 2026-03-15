@@ -1,142 +1,88 @@
-# Operational Workflows
+# Operational Workflows / Flujos Operativos
 
-## Objetivo
+![Workflow Banner](https://capsule-render.vercel.app/api?type=rect&height=120&text=Execution%20Workflows&fontSize=32&color=0:0ea5e9,100:14b8a6&fontColor=ffffff)
 
-Esta guia traduce el repositorio a acciones concretas. En vez de listar solo comandos, organiza el trabajo segun lo que normalmente querras hacer: orientarte, entrenar, predecir, visualizar o revisar notebooks.
+ES: Ejecuta segun objetivo, no por archivo suelto.  
+EN: Execute by objective, not by isolated files.
 
-## Workflow 0: Elegir una ruta dentro del repo
+## Decision Tree / Arbol de Decision
 
-Usa esta regla simple:
+```mermaid
+flowchart TD
+    A[What do you want to do? / Que quieres hacer?] --> B[Spam detection]
+    A --> C[Cloud cost prediction]
+    A --> D[PCA user projection]
+    A --> E[Notebook exploration]
 
-- si buscas teoria, simulacion o practica estadistica, empieza por `Algorimths/` y `Naive_Bayes/Scratch/`;
-- si buscas algo ejecutable de punta a punta, empieza por `Naive_Bayes/Model/`;
-- si buscas soporte operativo, usa `docs/`.
-
-## Workflow 1: Entrenar el clasificador con el dataset incluido
-
-Este es el camino mas corto para verificar que el proyecto aplicado funciona.
-
-```powershell
-& .\.venv\Scripts\Activate.ps1
-python .\Naive_Bayes\Model\trainer.py
+    B --> B1[Naive_Bayes/Model]
+    C --> C1[Linear_Regression]
+    D --> D1[PCA]
+    E --> E1[Algorimths + Naive_Bayes/Scratch]
 ```
 
-Que hace:
-
-- carga `Naive_Bayes/Model/emails.csv`;
-- limpia el texto;
-- divide train/test;
-- vectoriza con TF-IDF;
-- entrena `MultinomialNB`;
-- imprime metricas;
-- guarda artefactos reutilizables.
-
-Salidas esperadas:
-
-- `spam_model.pkl` en la raiz del repo;
-- `vectorizer.pkl` en la raiz del repo;
-- `classification_report` en consola.
-
-## Workflow 2: Regenerar el dataset y reentrenar
-
-Usalo cuando quieras reiniciar el ejemplo sintetico o probar el pipeline desde cero.
+## Workflow 0: Base Preparation / Preparacion Base
 
 ```powershell
 & .\.venv\Scripts\Activate.ps1
-python .\Naive_Bayes\Model\data_factory.py
-python .\Naive_Bayes\Model\trainer.py
 ```
 
-Notas utiles:
-
-- `generate_dataset(n_samples=1000)` produce por defecto un conjunto sintetico pequeno;
-- la logica actual genera aproximadamente `60%` ham y `40%` spam;
-- el archivo resultante se guarda como `Naive_Bayes/Model/emails.csv`.
-
-## Workflow 3: Clasificar un correo por consola
+## Workflow 1: Naive Bayes End-to-End
 
 ```powershell
-& .\.venv\Scripts\Activate.ps1
+python .\Naive_Bayes\Model\trainer.py
 python .\Naive_Bayes\Model\predict.py
+python -m streamlit run .\Naive_Bayes\Model\app.py --server.port 8516
 ```
 
-Entrada:
+Expected / Esperado:
 
-- cualquier texto pegado en consola.
+- metrics in console / metricas en consola
+- `spam_model.pkl` and `vectorizer.pkl`
+- running Streamlit app / app Streamlit activa
 
-Salida esperada:
-
-- etiqueta `SPAM` o `HAM`;
-- confianza basada en la mayor probabilidad de clase.
-
-Requisito previo:
-
-- `spam_model.pkl` y `vectorizer.pkl` ya deben existir.
-
-## Workflow 4: Abrir la app web en Streamlit
+## Workflow 2: Linear Regression Cloud Billing
 
 ```powershell
-& .\.venv\Scripts\Activate.ps1
-python -m streamlit run .\Naive_Bayes\Model\app.py
+python .\Linear_Regression\infra_pipeline.py
+python -m streamlit run .\Linear_Regression\app_billing.py --server.port 8517
 ```
 
-Que deberias ver:
+Expected / Esperado:
 
-- una interfaz para pegar el contenido de un correo;
-- una prediccion con mensaje visual y metrica de confianza;
-- carga cacheada del modelo para evitar recargas innecesarias.
+- `cloud_billing.csv` updated
+- `billing_model.pkl` generated
+- PDF export from app
 
-## Workflow 5: Visualizar palabras frecuentes por clase
+## Workflow 3: PCA User Behavior
 
 ```powershell
-& .\.venv\Scripts\Activate.ps1
-python .\Naive_Bayes\Model\visualizer.py
+python .\PCA\user_data_factory.py
+python .\PCA\pca_pipeline.py
+python .\PCA\visualizer_pca.py
+python -m streamlit run .\PCA\app_pca.py --server.port 8515
 ```
 
-Que hace:
+Expected / Esperado:
 
-- lee `emails.csv`;
-- filtra por clase;
-- elimina `stopwords` de NLTK;
-- muestra un grafico de barras con las palabras mas frecuentes.
+- `PCA/scaler.pkl`, `PCA/pca_model.pkl`, `PCA/user_segments.csv`
+- scatter plot and projected coordinates
 
-Observacion:
-
-- si es la primera ejecucion, NLTK puede descargar recursos antes de graficar.
-
-## Workflow 6: Recorrer los notebooks con un orden razonable
-
-Si vas a estudiar el repositorio como laboratorio, este orden suele ser mas claro:
+## Workflow 4: Notebook Learning Path / Ruta de Aprendizaje
 
 1. `Algorimths/Bayesian_inference_engine.ipynb`
 2. `Algorimths/Digital_sensor.ipynb`
 3. `Algorimths/Dinamic_campaign_optimizer.ipynb`
-4. `Algorimths/Simulator_physical_perfomance.ipynb`
-5. `Algorimths/Multivariate_Analysis.ipynb`
-6. `Algorimths/Naive_Bayes_Multinomial.ipynb`
-7. `Naive_Bayes/Scratch/Naive_Bayes.ipynb`
+4. `Algorimths/Optimizer_Inventory.ipynb`
+5. `Algorimths/Simulator_physical_perfomance.ipynb`
+6. `Algorimths/Multivariate_Analysis.ipynb`
+7. `Algorimths/Naive_Bayes_Multinomial.ipynb`
+8. `Naive_Bayes/Scratch/Naive_Bayes.ipynb`
 
-Recomendaciones para notebooks:
-
-- ejecutalos de arriba a abajo;
-- usa el kernel de `.venv` si quieres compartir dependencias con el resto del proyecto;
-- si aparece un `NameError`, normalmente significa que se salto una celda previa.
-
-## Workflow 7: Publicar cambios en una rama
-
-Solo si estas versionando modificaciones del proyecto:
+## Workflow 5: Publish Docs / Publicar Documentacion
 
 ```powershell
-git switch -c feature/documentation
-git add .
-git commit -m "docs: improve project documentation"
-git push -u origin feature/documentation
+git status
+git add README.md docs/ Algorimths/README.md Linear_Regression/README.md Naive_Bayes/README.md PCA/README.md
+git commit -m "docs: add bilingual ES-EN docs"
+git push
 ```
-
-## Checklist operativo rapido
-
-- [ ] `.venv` activo antes de ejecutar Python.
-- [ ] Dependencias instaladas desde `Naive_Bayes/Model/requeriments.txt`.
-- [ ] `spam_model.pkl` y `vectorizer.pkl` generados antes de usar CLI o Streamlit.
-- [ ] Comandos lanzados desde la raiz del repo.
-- [ ] Notebooks ejecutados en orden cuando dependen de variables previas.

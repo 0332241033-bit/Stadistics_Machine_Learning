@@ -1,121 +1,93 @@
-# Setup and Environment Guide
+# Setup and Environment Guide / Guia de Entorno
 
-## Proposito
+![Setup Banner](https://capsule-render.vercel.app/api?type=rect&height=120&text=Setup%20%26%20Environment&fontSize=32&color=0:2563eb,100:16a34a&fontColor=ffffff)
 
-Esta guia deja preparado el entorno local para tres tipos de uso:
+ES: Guia unificada para dejar listo todo el repositorio.  
+EN: Unified guide to prepare the entire repository.
 
-- ejecutar notebooks desde VS Code;
-- entrenar y probar el clasificador spam/ham;
-- lanzar la app web en Streamlit.
+## Goal / Objetivo
 
-## Plataforma objetivo
+- ES: Ejecutar notebooks en `Algorimths/`.
+- EN: Run notebooks in `Algorimths/`.
+- ES: Entrenar y servir `Naive_Bayes/`.
+- EN: Train and serve `Naive_Bayes/`.
+- ES: Correr prediccion de costos en `Linear_Regression/`.
+- EN: Run cloud cost prediction in `Linear_Regression/`.
+- ES: Ejecutar pipeline y app de `PCA/`.
+- EN: Run pipeline and app in `PCA/`.
 
-- Windows PowerShell
-- Python 3.10 o superior
+## Requirements / Requisitos
 
-## Prerrequisitos
+- Python 3.10+
+- PowerShell
+- VS Code (recommended / recomendado)
 
-Antes de empezar, verifica que tienes:
-
-- Python accesible desde terminal;
-- permisos para crear un entorno virtual local;
-- conectividad basica si vas a instalar dependencias o descargar recursos de NLTK.
-
-## 1. Crear el entorno virtual
-
-Ejecuta desde la raiz del repositorio:
+## 1) Create and Activate venv / Crear y Activar venv
 
 ```powershell
 python -m venv .venv
-```
-
-## 2. Activar el entorno virtual
-
-```powershell
 & .\.venv\Scripts\Activate.ps1
 ```
 
-Si PowerShell bloquea la ejecucion del script:
+If script execution is blocked / Si la ejecucion de scripts esta bloqueada:
 
 ```powershell
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 & .\.venv\Scripts\Activate.ps1
 ```
 
-## 3. Instalar dependencias del proyecto
+## 2) Install Dependencies / Instalar Dependencias
 
 ```powershell
 python -m pip install --upgrade pip
 python -m pip install -r .\Naive_Bayes\Model\requeriments.txt
+python -m pip install numpy fpdf jupyter
 ```
 
-Dependencias principales incluidas actualmente:
-
-- `pandas`
-- `scikit-learn`
-- `nltk`
-- `matplotlib`
-- `seaborn`
-- `streamlit`
-- `joblib`
-
-Nota: el archivo se llama `requeriments.txt` porque asi existe hoy en el repositorio. La documentacion conserva ese nombre real.
-
-## 4. Verificar que el entorno quedo funcional
+## 3) Environment Validation / Validacion de Entorno
 
 ```powershell
 python --version
 python -m pip list
-python -c "import pandas, sklearn, nltk, matplotlib, seaborn, streamlit, joblib; print('Entorno OK')"
+python -c "import numpy, pandas, sklearn, matplotlib, seaborn, streamlit, joblib, nltk, fpdf; print('Environment OK / Entorno OK')"
 ```
 
-Si este ultimo comando falla, revisa [TROUBLESHOOTING.md](TROUBLESHOOTING.md) antes de continuar.
+## 4) Quick Validation by Module / Validacion Rapida por Modulo
 
-## 5. Recomendar el mismo entorno para notebooks
-
-Si trabajas desde VS Code con archivos `.ipynb`:
-
-- selecciona `.venv` como kernel de Python;
-- ejecuta los notebooks de arriba hacia abajo para evitar variables no inicializadas;
-- usa el mismo entorno para notebooks y scripts si quieres resultados coherentes.
-
-## 6. Validar el pipeline reproducible de spam/ham
-
-El dataset de ejemplo ya viene incluido en el repo, asi que puedes probar el flujo minimo asi:
+### Naive Bayes
 
 ```powershell
 python .\Naive_Bayes\Model\trainer.py
 python .\Naive_Bayes\Model\predict.py
-python -m streamlit run .\Naive_Bayes\Model\app.py
 ```
 
-Si quieres regenerar el dataset sintetico antes de entrenar:
+### Linear Regression
 
 ```powershell
-python .\Naive_Bayes\Model\data_factory.py
-python .\Naive_Bayes\Model\trainer.py
+python .\Linear_Regression\infra_pipeline.py
+python -m streamlit run .\Linear_Regression\app_billing.py --server.port 8517
 ```
 
-## 7. Archivos que deberian aparecer o actualizarse
+### PCA
 
-Despues de entrenar deberias tener:
+```powershell
+python .\PCA\user_data_factory.py
+python .\PCA\pca_pipeline.py
+python -m streamlit run .\PCA\app_pca.py --server.port 8515
+```
 
-- `spam_model.pkl` en la raiz del repositorio;
-- `vectorizer.pkl` en la raiz del repositorio.
+## 5) Notebook Kernel / Kernel de Notebooks
 
-Si regeneras datos, tambien se actualiza:
+- ES: Selecciona `.venv` como interprete del notebook.
+- EN: Select `.venv` as notebook interpreter.
+- ES: Ejecuta de arriba a abajo para evitar `NameError`.
+- EN: Execute top-to-bottom to avoid `NameError`.
 
-- `Naive_Bayes/Model/emails.csv`
+## 6) Expected Artifacts / Artefactos Esperados
 
-## Convenciones del entorno
-
-- Ejecuta comandos desde la raiz del repo salvo que una guia diga lo contrario.
-- `trainer.py` consume `Naive_Bayes/Model/emails.csv`.
-- `predict.py` y `app.py` cargan los artefactos entrenados desde la raiz del repo.
-- `visualizer.py` puede pedir la descarga de `stopwords` de NLTK en el primer uso.
-
-## Recomendaciones practicas
-
-- Si solo quieres leer notebooks, el entorno no tiene que estar perfecto desde el minuto uno.
-- Si quieres reproducibilidad, usa siempre la misma `.venv`.
-- Si trabajas en mejoras del codigo, reentrena el modelo tras tocar limpieza o vectorizacion.
+| Module / Modulo | Expected files / Archivos esperados |
+| --- | --- |
+| Naive_Bayes | `spam_model.pkl`, `vectorizer.pkl` |
+| Linear_Regression | `billing_model.pkl`, `cloud_billing.csv` |
+| Linear_Regression app | `proyeccion_costos.pdf` |
+| PCA | `PCA/scaler.pkl`, `PCA/pca_model.pkl`, `PCA/user_segments.csv` |

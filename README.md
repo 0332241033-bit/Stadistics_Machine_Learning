@@ -1,218 +1,97 @@
 # Stadistics_Machine_Learning
 
-[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
-[![Streamlit](https://img.shields.io/badge/streamlit-app-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
-[![Status](https://img.shields.io/badge/status-learning%20lab-0A7A3E)](#)
+![Project Banner](https://capsule-render.vercel.app/api?type=waving&height=170&section=header&text=Statistics+%2B+Machine+Learning+Portfolio&fontSize=32&fontAlignY=35&color=0:0ea5e9,100:16a34a&fontColor=ffffff)
 
-Repositorio de estadistica aplicada y machine learning con dos lineas principales de trabajo:
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-Interactive%20Apps-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-Production%20ML-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
+[![Status](https://img.shields.io/badge/status-portfolio%20ready-0A7A3E)](#)
 
-- notebooks en `Algorimths/` para simulacion, inferencia probabilistica y analisis exploratorio;
-- un mini proyecto reproducible de clasificacion spam/ham en `Naive_Bayes/Model/` con entrenamiento, inferencia por consola, visualizacion y app web en Streamlit.
+## Executive Summary / Resumen Ejecutivo
 
-El resultado es un laboratorio pequeno pero variado: mezcla teoria, ejercicios didacticos y un pipeline ejecutable que sirve como punto de partida para proyectos de NLP clasico.
+ES: Repositorio de portfolio orientado a negocio que demuestra tres lineas completas de trabajo: clasificacion de texto (Naive Bayes), prediccion de costos cloud (Linear Regression) y reduccion de dimensionalidad para segmentacion de usuarios (PCA), ademas de un laboratorio de notebooks para analisis estadistico aplicado.
 
-## Tabla de contenido
+EN: Business-oriented portfolio repository showcasing three end-to-end tracks: text classification (Naive Bayes), cloud cost forecasting (Linear Regression), and user behavior dimensionality reduction (PCA), plus a notebook lab for applied statistical analysis.
 
-- [Vision general](#vision-general)
-- [Que contiene el repositorio](#que-contiene-el-repositorio)
-- [Mapa de notebooks y experimentos](#mapa-de-notebooks-y-experimentos)
-- [Pipeline de Naive Bayes](#pipeline-de-naive-bayes)
-- [Flujo rapido de ejecucion](#flujo-rapido-de-ejecucion)
-- [Estructura resumida](#estructura-resumida)
-- [Salidas esperadas](#salidas-esperadas)
-- [Mapa de documentacion](#mapa-de-documentacion)
-- [Notas practicas](#notas-practicas)
-- [Roadmap sugerido](#roadmap-sugerido)
+## Why This Portfolio Matters / Por Que Este Portfolio Importa
 
-## Vision general
+| Capability | Evidence in this repository |
+| --- | --- |
+| End-to-end ML delivery | Data generation -> training -> evaluation -> serialized artifacts -> interactive apps |
+| Product mindset | Streamlit applications designed for decision support and quick adoption |
+| Applied analytics | Practical use of Bayesian methods, Monte Carlo simulation, and multivariate analysis |
+| Engineering discipline | Modular folder structure, workflow docs, troubleshooting guide, API-style references |
 
-Este proyecto no es solo un clasificador de spam. En realidad agrupa varios ejercicios de estadistica y machine learning con foco en:
-
-1. modelado probabilistico;
-2. simulacion y generacion de datos sinteticos;
-3. analisis univariado y multivariado;
-4. construccion de clasificadores con Naive Bayes;
-5. empaquetado minimo de un modelo en scripts y app interactiva.
-
-Si quieres recorrer el repositorio con criterio, la mejor division mental es esta:
-
-- `Algorimths/`: material exploratorio y didactico en notebooks.
-- `Naive_Bayes/Model/`: flujo reproducible con scripts ejecutables.
-- `Naive_Bayes/Scratch/`: implementacion y teoria desde cero.
-- `docs/`: documentacion operativa y tecnica.
-
-## Que contiene el repositorio
-
-| Area | Ubicacion | Para que sirve |
-| --- | --- | --- |
-| Experimentos probabilisticos | `Algorimths/` | Reune notebooks de Bayes, simulacion, A/B testing, sensores y analisis multivariado. |
-| Proyecto aplicado de spam | `Naive_Bayes/Model/` | Implementa dataset, entrenamiento, prediccion CLI, app Streamlit y visualizacion. |
-| Naive Bayes desde cero | `Naive_Bayes/Scratch/` | Explica la teoria y muestra una version mas didactica del algoritmo. |
-| Guias de soporte | `docs/` | Centraliza setup, workflows, referencia tecnica y troubleshooting. |
-
-## Mapa de notebooks y experimentos
-
-La carpeta `Algorimths/` conserva su nombre actual tal como existe en el repo. Cada notebook cubre un caso distinto:
-
-- `Bayesian_inference_engine.ipynb`: motor de inferencia bayesiana para diagnosticos medicos secuenciales a partir de prevalencia, sensibilidad y especificidad.
-- `Digital_sensor.ipynb`: simulacion de sensor digital con datos normales, estimacion de parametros y deteccion de anomalias basicas.
-- `Dinamic_campaign_optimizer.ipynb`: optimizacion de campanas con Bernoulli, Binomial, Beta y muestreo de Thompson para A/B testing.
-- `Multivariate_Analysis.ipynb`: analisis multivariado aplicado a seguimiento fisico, con covarianza, correlacion, limpieza por z-score y deteccion gaussiana de anomalias.
-- `Naive_Bayes_Multinomial.ipynb`: clasificador multinomial de fraude financiero construido con enfoque didactico y suavizado de Laplace.
-- `Simulator_physical_perfomance.ipynb`: simulador Monte Carlo para estimar la probabilidad de alcanzar una meta fisica bajo incertidumbre diaria.
-- `Naive_Bayes/Scratch/Naive_Bayes.ipynb`: desarrollo teorico y practico de Naive Bayes desde cero, separado del pipeline basado en scikit-learn.
-
-En conjunto, estos notebooks funcionan mejor como laboratorio de aprendizaje que como una libreria formal. La ruta mas directa para correr algo de punta a punta sigue siendo el modulo de spam.
-
-## Pipeline de Naive Bayes
-
-El subproyecto de spam/ham implementa un flujo clasico de NLP ligero:
+## Business-Aligned Architecture / Arquitectura Orientada a Negocio
 
 ```mermaid
-flowchart LR
-    A[data_factory.py] --> B[Naive_Bayes/Model/emails.csv]
-    B --> C[trainer.py]
-    C --> D[spam_model.pkl]
-    C --> E[vectorizer.pkl]
-    D --> F[predict.py]
-    E --> F
-    D --> G[app.py]
-    E --> G
-    B --> H[visualizer.py]
+flowchart TD
+    ROOT[Stadistics_Machine_Learning] --> NB[Naive_Bayes\nSpam Risk Detection]
+    ROOT --> LR[Linear_Regression\nCloud Cost Forecast]
+    ROOT --> PCA[PCA\nUser Behavior Projection]
+    ROOT --> ALG[Algorimths\nApplied Statistical Lab]
+    ROOT --> DOCS[docs\nOperations + Technical Governance]
+
+    NB --> NB_APP[Streamlit + CLI]
+    LR --> LR_APP[Streamlit + PDF Export]
+    PCA --> PCA_APP[Streamlit + Visualization]
 ```
 
-### Scripts principales
+## Project Modules / Modulos del Proyecto
 
-| Archivo | Rol | Salida o efecto |
-| --- | --- | --- |
-| `data_factory.py` | Genera dataset sintetico de correos ham/spam. | `Naive_Bayes/Model/emails.csv` |
-| `trainer.py` | Limpia texto, vectoriza con TF-IDF, entrena `MultinomialNB` y evalua. | `spam_model.pkl` y `vectorizer.pkl` en la raiz del repo |
-| `predict.py` | Carga artefactos entrenados y clasifica un texto por consola. | Etiqueta y confianza |
-| `app.py` | Expone el clasificador en Streamlit. | App local interactiva |
-| `visualizer.py` | Grafica terminos frecuentes por clase. | Grafico de barras |
+| Folder | Business Objective | Key Deliverables | Guide |
+| --- | --- | --- | --- |
+| `Naive_Bayes/` | Detect spam risk in email content | Trained model, vectorizer, CLI inference, Streamlit app | [Naive_Bayes/README.md](Naive_Bayes/README.md) |
+| `Linear_Regression/` | Estimate monthly cloud infrastructure cost | Forecast model, cost simulator app, PDF report output | [Linear_Regression/README.md](Linear_Regression/README.md) |
+| `PCA/` | Compress user behavior data for segmentation | Scaler, PCA model, projected user map, app projection | [PCA/README.md](PCA/README.md) |
+| `Algorimths/` | Explore statistical and ML foundations | Bayesian inference, optimization, simulation notebooks | [Algorimths/README.md](Algorimths/README.md) |
+| `docs/` | Standardize operation and maintenance | Setup, workflows, API reference, troubleshooting | [docs/INDEX.md](docs/INDEX.md) |
 
-### Parametros actuales del modelo
+## Demonstration Paths / Rutas de Demostracion
 
-- dataset sintetico por defecto: `1000` registros;
-- distribucion aproximada: `60%` ham y `40%` spam;
-- split: `train_test_split(test_size=0.2, random_state=42)`;
-- vectorizacion: `TfidfVectorizer(stop_words='english')`;
-- clasificador: `MultinomialNB`.
-
-## Flujo rapido de ejecucion
-
-### 1. Crear y activar entorno virtual
-
-```powershell
-python -m venv .venv
-& .\.venv\Scripts\Activate.ps1
-```
-
-### 2. Instalar dependencias
-
-```powershell
-python -m pip install --upgrade pip
-python -m pip install -r .\Naive_Bayes\Model\requeriments.txt
-```
-
-### 3. Entrenar con el dataset incluido
-
-El repositorio ya trae un `emails.csv` de ejemplo, asi que puedes entrenar directamente:
+### 1) Spam/Ham Classification Demo
 
 ```powershell
 python .\Naive_Bayes\Model\trainer.py
-```
-
-### 4. Regenerar dataset (opcional)
-
-Si quieres reconstruir el dataset sintetico antes de entrenar:
-
-```powershell
-python .\Naive_Bayes\Model\data_factory.py
-python .\Naive_Bayes\Model\trainer.py
-```
-
-### 5. Probar inferencia por consola
-
-```powershell
 python .\Naive_Bayes\Model\predict.py
+python -m streamlit run .\Naive_Bayes\Model\app.py --server.port 8516
 ```
 
-### 6. Lanzar la app web
+### 2) Cloud Billing Forecast Demo
 
 ```powershell
-python -m streamlit run .\Naive_Bayes\Model\app.py
+python .\Linear_Regression\infra_pipeline.py
+python -m streamlit run .\Linear_Regression\app_billing.py --server.port 8517
 ```
 
-### 7. Visualizar palabras frecuentes
+### 3) User Segmentation with PCA Demo
 
 ```powershell
-python .\Naive_Bayes\Model\visualizer.py
+python .\PCA\user_data_factory.py
+python .\PCA\pca_pipeline.py
+python .\PCA\visualizer_pca.py
+python -m streamlit run .\PCA\app_pca.py --server.port 8515
 ```
 
-## Estructura resumida
+## Recruiter Snapshot / Snapshot para Reclutadores
 
-```text
-Stadistics_Machine_Learning/
-|- README.md
-|- Algorimths/
-|  |- Bayesian_inference_engine.ipynb
-|  |- Digital_sensor.ipynb
-|  |- Dinamic_campaign_optimizer.ipynb
-|  |- Multivariate_Analysis.ipynb
-|  |- Naive_Bayes_Multinomial.ipynb
-|  |- Simulator_physical_perfomance.ipynb
-|- Naive_Bayes/
-|  |- Model/
-|  |  |- app.py
-|  |  |- data_factory.py
-|  |  |- emails.csv
-|  |  |- predict.py
-|  |  |- requeriments.txt
-|  |  |- trainer.py
-|  |  |- visualizer.py
-|  |- Scratch/
-|     |- data.csv
-|     |- Naive_Bayes.ipynb
-|- docs/
-|  |- API_REFERENCE.md
-|  |- INDEX.md
-|  |- SETUP_AND_ENV.md
-|  |- TROUBLESHOOTING.md
-|  |- WORKFLOWS.md
-```
+- ES: Implementacion de ciclos completos de machine learning con foco en uso real.
+- EN: Full machine learning lifecycle implementation focused on real usage.
+- ES: Capacidad de traducir modelos tecnicos a interfaces de negocio.
+- EN: Ability to translate technical models into business-facing interfaces.
+- ES: Documentacion operacional y tecnica lista para equipos colaborativos.
+- EN: Operational and technical documentation ready for collaborative teams.
 
-## Salidas esperadas
+## LinkedIn-Ready Summary / Resumen Listo para LinkedIn
 
-Despues de ejecutar el proyecto aplicado deberias ver lo siguiente:
+ES: Portfolio de Machine Learning aplicado con proyectos de clasificacion de spam, prediccion de costos cloud y segmentacion de usuarios con PCA. Incluye pipelines reproducibles, despliegue en Streamlit y documentacion operativa para ejecucion y mantenimiento.
 
-- `Naive_Bayes/Model/emails.csv` si regeneras el dataset;
-- `spam_model.pkl` en la raiz del repositorio despues de entrenar;
-- `vectorizer.pkl` en la raiz del repositorio despues de entrenar;
-- un reporte de clasificacion en consola desde `trainer.py`;
-- una prediccion con confianza desde `predict.py`;
-- una app local de Streamlit desde `app.py`;
-- un grafico de barras desde `visualizer.py`.
+EN: Applied Machine Learning portfolio featuring spam classification, cloud cost forecasting, and PCA-based user segmentation. Includes reproducible pipelines, Streamlit deployment, and operational documentation for execution and maintenance.
 
-## Mapa de documentacion
+## Documentation Map / Mapa de Documentacion
 
-- `docs/INDEX.md`: indice y ruta de lectura recomendada.
-- `docs/SETUP_AND_ENV.md`: instalacion, entorno virtual y verificacion.
-- `docs/WORKFLOWS.md`: workflows operativos por objetivo.
-- `docs/API_REFERENCE.md`: referencia tecnica de scripts, notebooks, datos y artefactos.
-- `docs/TROUBLESHOOTING.md`: problemas frecuentes y comandos de diagnostico.
-
-## Notas practicas
-
-- Los nombres `Algorimths`, `Dinamic_campaign_optimizer.ipynb`, `Simulator_physical_perfomance.ipynb` y `requeriments.txt` se documentan tal como existen hoy en el repo.
-- Los notebooks son exploratorios y didacticos; el flujo mas estable para ejecucion repetible esta en `Naive_Bayes/Model/`.
-- La app y la CLI esperan encontrar `spam_model.pkl` y `vectorizer.pkl` en la raiz del repositorio.
-- `visualizer.py` puede descargar `nltk stopwords` en la primera ejecucion.
-
-## Roadmap sugerido
-
-- unificar totalmente el preprocesamiento entre entrenamiento, CLI y app web;
-- agregar pruebas automaticas para limpieza, entrenamiento e inferencia;
-- renombrar rutas con typos historicos cuando ya no exista dependencia externa del nombre;
-- comparar variantes del vectorizador, n-grams y metodos adicionales de clasificacion.
+- [docs/INDEX.md](docs/INDEX.md)
+- [docs/SETUP_AND_ENV.md](docs/SETUP_AND_ENV.md)
+- [docs/WORKFLOWS.md](docs/WORKFLOWS.md)
+- [docs/API_REFERENCE.md](docs/API_REFERENCE.md)
+- [docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md)

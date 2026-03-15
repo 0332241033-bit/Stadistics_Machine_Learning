@@ -1,56 +1,50 @@
-# Documentation Index
+# Documentation Hub / Centro de Documentacion
 
-## Proposito
+![Docs Banner](https://capsule-render.vercel.app/api?type=rect&height=120&text=Project%20Documentation%20Hub&fontSize=34&color=0:0284c7,100:0f766e&fontColor=ffffff)
 
-La carpeta `docs/` complementa al `README.md`. El README explica el proyecto en conjunto; estos archivos profundizan en instalacion, ejecucion, referencia tecnica y resolucion de problemas.
+ES: Esta carpeta centraliza la documentacion operativa y tecnica.  
+EN: This folder centralizes operational and technical documentation.
 
-## Ruta de lectura recomendada
+## Reading Map / Mapa de Lectura
 
-### Si quieres ejecutar el proyecto por primera vez
+```mermaid
+flowchart LR
+    A[README.md] --> B[SETUP_AND_ENV.md]
+    B --> C[WORKFLOWS.md]
+    C --> D[API_REFERENCE.md]
+    C --> E[TROUBLESHOOTING.md]
+```
 
-1. [SETUP_AND_ENV.md](SETUP_AND_ENV.md)
-2. [WORKFLOWS.md](WORKFLOWS.md)
-3. [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+## Core Documents / Documentos Base
 
-### Si quieres entender como esta construido
-
-1. [README.md](../README.md)
-2. [API_REFERENCE.md](API_REFERENCE.md)
-3. [WORKFLOWS.md](WORKFLOWS.md)
-
-### Si vienes por los notebooks
-
-1. [README.md](../README.md)
-2. [WORKFLOWS.md](WORKFLOWS.md)
-3. [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
-
-## Archivos y alcance
-
-| Archivo | Alcance | Cuando usarlo |
+| File / Archivo | ES | EN |
 | --- | --- | --- |
-| [README.md](../README.md) | Vista global del repo | Cuando necesitas entender rapidamente que hay en el proyecto. |
-| [SETUP_AND_ENV.md](SETUP_AND_ENV.md) | Preparacion del entorno | Cuando vas a instalar dependencias o configurar `.venv`. |
-| [WORKFLOWS.md](WORKFLOWS.md) | Ejecucion por objetivos | Cuando quieres entrenar, predecir, abrir la app o recorrer notebooks. |
-| [API_REFERENCE.md](API_REFERENCE.md) | Scripts, notebooks y contratos | Cuando necesitas revisar responsabilidades de modulos, datos y artefactos. |
-| [TROUBLESHOOTING.md](TROUBLESHOOTING.md) | Fallos comunes | Cuando algo no corre, falta un archivo o un notebook da error. |
+| [../README.md](../README.md) | Vista global del proyecto | Project-wide overview |
+| [SETUP_AND_ENV.md](SETUP_AND_ENV.md) | Preparacion del entorno | Environment setup |
+| [WORKFLOWS.md](WORKFLOWS.md) | Flujos por objetivo | Goal-oriented workflows |
+| [API_REFERENCE.md](API_REFERENCE.md) | Contratos tecnicos | Technical contracts |
+| [TROUBLESHOOTING.md](TROUBLESHOOTING.md) | Fallos comunes y soluciones | Common issues and fixes |
 
-## Mapa rapido del repositorio
+## Secondary Folder Guides / Guias Secundarias por Carpeta
 
-- `Algorimths/`: notebooks de estadistica, simulacion e inferencia.
-- `Naive_Bayes/Model/`: scripts reproducibles del clasificador spam/ham.
-- `Naive_Bayes/Scratch/`: version teorica y manual de Naive Bayes.
-- `docs/`: soporte documental.
+| Folder / Carpeta | Guide / Guia |
+| --- | --- |
+| Algorimths | [../Algorimths/README.md](../Algorimths/README.md) |
+| Linear_Regression | [../Linear_Regression/README.md](../Linear_Regression/README.md) |
+| Naive_Bayes | [../Naive_Bayes/README.md](../Naive_Bayes/README.md) |
+| PCA | [../PCA/README.md](../PCA/README.md) |
 
-## Convenciones de esta documentacion
+## Conventions / Convenciones
 
-- Los comandos estan pensados para Windows PowerShell.
-- Las rutas se expresan desde la raiz del repositorio.
-- Se conservan los nombres reales del repo, incluyendo `Algorimths` y `requeriments.txt`.
-- Los notebooks se tratan como material exploratorio; los scripts de `Naive_Bayes/Model/` se documentan como flujo reproducible.
+- ES: Comandos orientados a Windows PowerShell.  
+  EN: Commands are tailored for Windows PowerShell.
+- ES: Rutas relativas desde la raiz del repo.  
+  EN: Paths are relative to repo root.
+- ES: Se respetan nombres reales existentes (`Algorimths`, `requeriments.txt`).  
+  EN: Existing real names are intentionally preserved.
 
-## Checklist de mantenimiento
+## Maintenance Checklist / Checklist de Mantenimiento
 
-- [ ] Actualizar el README y este indice si cambian carpetas o propositos del repo.
-- [ ] Revisar `SETUP_AND_ENV.md` cuando cambien dependencias o requisitos de Python.
-- [ ] Revisar `API_REFERENCE.md` cuando cambien contratos de funciones o salidas.
-- [ ] Anadir a `TROUBLESHOOTING.md` cualquier error que se repita mas de una vez.
+- [ ] Update this hub when folder structure changes.
+- [ ] Sync [API_REFERENCE.md](API_REFERENCE.md) after script changes.
+- [ ] Add repeated production issues to [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
