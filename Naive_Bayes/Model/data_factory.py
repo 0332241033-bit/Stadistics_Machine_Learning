@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import random
 
@@ -31,8 +32,9 @@ def generate_dataset(n_samples=1000):
         data.append([text, label])
     
     df = pd.DataFrame(data, columns=['text', 'label'])
-    df.to_csv('emails.csv', index=False)
-    print("✅ Archivo 'emails.csv' generado.")
+    output_path = os.path.join(os.path.dirname(__file__), 'emails.csv')
+    df.to_csv(output_path, index=False)
+    print("Archivo 'emails.csv' generado en Naive_Bayes/Model.")
 
 if __name__ == "__main__":
     generate_dataset()
