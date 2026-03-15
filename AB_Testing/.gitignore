@@ -1,0 +1,10 @@
+__pycache__/
+.pytest_cache/
+
+data/*.csv
+!data/.gitkeep
+
+outputs/*.json
+outputs/*.md
+outputs/*.csv
+!outputs/.gitkeep

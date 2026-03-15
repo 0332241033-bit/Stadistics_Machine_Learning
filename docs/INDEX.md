@@ -30,6 +30,7 @@ flowchart LR
 | Folder / Carpeta | Guide / Guia |
 | --- | --- |
 | Algorimths | [../Algorimths/README.md](../Algorimths/README.md) |
+| AB_Testing | [../AB_Testing/README.md](../AB_Testing/README.md) |
 | Linear_Regression | [../Linear_Regression/README.md](../Linear_Regression/README.md) |
 | Logistic_regression | [../Logistic_regression/README.md](../Logistic_regression/README.md) |
 | Naive_Bayes | [../Naive_Bayes/README.md](../Naive_Bayes/README.md) |

@@ -137,6 +137,12 @@ flowchart LR
     CM --> LGAPP[app_credit.py]
     CS --> LGAPP
     LGAPP --> CPDF[dictamen_credito.pdf]
+
+    ABP[AB_Testing/ab_pipeline.py] --> ABD[AB_Testing/data/ab_experiment.csv]
+    ABP --> ABO[AB_Testing/outputs/experiment_outcome.json]
+    ABP --> ABR[AB_Testing/outputs/experiment_report.md]
+    ABD --> ABA[AB_Testing/app_ab.py]
+    ABO --> ABA
 ```
 
 ## 4) Logistic_regression Module / Modulo Logistic_regression
@@ -171,3 +177,55 @@ flowchart LR
 | Class / Clase | `CreditReport(FPDF)` |
 | Function / Funcion | `generate_credit_pdf(inputs, result, probability)` |
 | Output / Salida | `dictamen_credito.pdf` |
+
+## 5) AB_Testing Module / Modulo AB_Testing
+
+### `AB_Testing/ab_pipeline.py`
+
+| Field / Campo | Value / Valor |
+| --- | --- |
+| Main function / Funcion principal | `main()` |
+| Inputs / Entradas | CLI args: `sample_size`, `alpha`, `mde`, `seed`, `treatment_share` |
+| Process / Proceso | data generation -> validation -> treatment effect estimation -> uplift modeling -> reporting |
+| Outputs / Salidas | `AB_Testing/data/ab_experiment.csv`, `AB_Testing/outputs/experiment_outcome.json`, `AB_Testing/outputs/experiment_report.md`, `AB_Testing/outputs/variant_summary.csv` |
+| Architecture role / Rol de arquitectura | Application entrypoint and orchestration bootstrap |
+
+### `AB_Testing/src/ab_testing/application/services.py`
+
+| Field / Campo | Value / Valor |
+| --- | --- |
+| Key classes / Clases clave | `ExperimentAnalysisService`, `DecisionEngine` |
+| Responsibilities / Responsabilidades | execute workflow, apply guardrails, and produce business decision |
+| Patterns / Patrones | Service Layer, Decision Policy |
+
+### `AB_Testing/src/ab_testing/stats/estimators.py`
+
+| Field / Campo | Value / Valor |
+| --- | --- |
+| Key classes / Clases clave | `DifferenceInMeansEstimator`, `CupedDifferenceInMeansEstimator` |
+| Metrics / Metricas | conversion rate uplift, revenue per user CUPED uplift |
+| Patterns / Patrones | Strategy Pattern (estimator strategy per metric) |
+
+### `AB_Testing/src/ab_testing/data/repository.py`
+
+| Field / Campo | Value / Valor |
+| --- | --- |
+| Key class / Clase clave | `CsvExperimentRepository` |
+| Responsibility / Responsabilidad | persistence abstraction for experiment dataset |
+| Pattern / Patron | Repository Pattern |
+
+### `AB_Testing/src/ab_testing/infrastructure/estimator_factory.py`
+
+| Field / Campo | Value / Valor |
+| --- | --- |
+| Key class / Clase clave | `EstimatorFactory` |
+| Responsibility / Responsabilidad | central creation of estimator strategy by metric |
+| Pattern / Patron | Factory Pattern |
+
+### `AB_Testing/app_ab.py`
+
+| Field / Campo | Value / Valor |
+| --- | --- |
+| Framework | Streamlit |
+| Input source / Fuente de entrada | `experiment_outcome.json` + experiment CSV |
+| Output / Salida | command center with decision, metrics, variant charts, uplift deciles |

@@ -13,12 +13,14 @@ flowchart TD
     A --> C[Cloud cost prediction]
     A --> F[Credit risk scoring]
     A --> D[PCA user projection]
+    A --> G[A/B testing experimentation]
     A --> E[Notebook exploration]
 
     B --> B1[Naive_Bayes/Model]
     C --> C1[Linear_Regression]
     F --> F1[Logistic_regression]
     D --> D1[PCA]
+    G --> G1[AB_Testing]
     E --> E1[Algorimths + Naive_Bayes/Scratch]
 ```
 
@@ -82,7 +84,20 @@ Expected / Esperado:
 - `credit_model.pkl` and `credit_scaler.pkl` saved
 - Streamlit credit evaluation app with PDF ruling download
 
-## Workflow 5: Notebook Learning Path / Ruta de Aprendizaje
+## Workflow 5: A/B Testing ML Experimentation
+
+```powershell
+python .\AB_Testing\ab_pipeline.py
+python -m streamlit run .\AB_Testing\app_ab.py --server.port 8519
+```
+
+Expected / Esperado:
+
+- `AB_Testing/data/ab_experiment.csv` generated
+- `AB_Testing/outputs/experiment_outcome.json` and `experiment_report.md` generated
+- Streamlit command center with decision, significance, and uplift deciles
+
+## Workflow 6: Notebook Learning Path / Ruta de Aprendizaje
 
 1. `Algorimths/Bayesian_inference_engine.ipynb`
 2. `Algorimths/Digital_sensor.ipynb`
@@ -93,11 +108,11 @@ Expected / Esperado:
 7. `Algorimths/Naive_Bayes_Multinomial.ipynb`
 8. `Naive_Bayes/Scratch/Naive_Bayes.ipynb`
 
-## Workflow 6: Publish Docs / Publicar Documentacion
+## Workflow 7: Publish Docs / Publicar Documentacion
 
 ```powershell
 git status
-git add README.md docs/ Algorimths/README.md Linear_Regression/README.md Logistic_regression/README.md Naive_Bayes/README.md PCA/README.md
+git add README.md docs/ AB_Testing/README.md Algorimths/README.md Linear_Regression/README.md Logistic_regression/README.md Naive_Bayes/README.md PCA/README.md
 git commit -m "docs: add bilingual ES-EN docs"
 git push
 ```

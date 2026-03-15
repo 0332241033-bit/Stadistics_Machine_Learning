@@ -9,9 +9,9 @@
 
 ## Executive Summary / Resumen Ejecutivo
 
-ES: Repositorio de portfolio orientado a negocio que demuestra cuatro lineas completas de trabajo: clasificacion de texto (Naive Bayes), prediccion de costos cloud (Linear Regression), evaluacion de riesgo crediticio (Logistic Regression) y reduccion de dimensionalidad para segmentacion de usuarios (PCA), ademas de un laboratorio de notebooks para analisis estadistico aplicado.
+ES: Repositorio de portfolio orientado a negocio que demuestra cinco lineas completas de trabajo: clasificacion de texto (Naive Bayes), prediccion de costos cloud (Linear Regression), evaluacion de riesgo crediticio (Logistic Regression), reduccion de dimensionalidad para segmentacion de usuarios (PCA) y experimentacion A/B Testing con ML para decisiones de producto, ademas de un laboratorio de notebooks para analisis estadistico aplicado.
 
-EN: Business-oriented portfolio repository showcasing four end-to-end tracks: text classification (Naive Bayes), cloud cost forecasting (Linear Regression), credit risk scoring (Logistic Regression), and user behavior dimensionality reduction (PCA), plus a notebook lab for applied statistical analysis.
+EN: Business-oriented portfolio repository showcasing five end-to-end tracks: text classification (Naive Bayes), cloud cost forecasting (Linear Regression), credit risk scoring (Logistic Regression), user behavior dimensionality reduction (PCA), and ML-powered A/B testing experimentation for product decisions, plus a notebook lab for applied statistical analysis.
 
 ## Why This Portfolio Matters / Por Que Este Portfolio Importa
 
@@ -30,6 +30,7 @@ flowchart TD
     ROOT --> LR[Linear_Regression\nCloud Cost Forecast]
     ROOT --> LGR[Logistic_regression\nCredit Risk Scoring]
     ROOT --> PCA[PCA\nUser Behavior Projection]
+    ROOT --> ABT[AB_Testing\nExperimentation + Uplift ML]
     ROOT --> ALG[Algorimths\nApplied Statistical Lab]
     ROOT --> DOCS[docs\nOperations + Technical Governance]
 
@@ -37,6 +38,7 @@ flowchart TD
     LR --> LR_APP[Streamlit + PDF Export]
     LGR --> LGR_APP[Streamlit + PDF Export]
     PCA --> PCA_APP[Streamlit + Visualization]
+    ABT --> ABT_APP[Pipeline + Streamlit Dashboard]
 ```
 
 ## Project Modules / Modulos del Proyecto
@@ -47,6 +49,7 @@ flowchart TD
 | `Linear_Regression/` | Estimate monthly cloud infrastructure cost | Forecast model, cost simulator app, PDF report output | [Linear_Regression/README.md](Linear_Regression/README.md) |
 | `Logistic_regression/` | Evaluate credit applications and score default risk | Logistic model, scaler, credit scoring app, PDF ruling | [Logistic_regression/README.md](Logistic_regression/README.md) |
 | `PCA/` | Compress user behavior data for segmentation | Scaler, PCA model, projected user map, app projection | [PCA/README.md](PCA/README.md) |
+| `AB_Testing/` | Validate product changes with statistical and ML experimentation | Experiment pipeline, CUPED metrics, uplift targeting, decision reports, Streamlit command center | [AB_Testing/README.md](AB_Testing/README.md) |
 | `Algorimths/` | Explore statistical and ML foundations | Bayesian inference, optimization, simulation notebooks | [Algorimths/README.md](Algorimths/README.md) |
 | `docs/` | Standardize operation and maintenance | Setup, workflows, API reference, troubleshooting | [docs/INDEX.md](docs/INDEX.md) |
 
@@ -83,6 +86,13 @@ python .\PCA\visualizer_pca.py
 python -m streamlit run .\PCA\app_pca.py --server.port 8515
 ```
 
+### 5) A/B Testing ML Experimentation Demo
+
+```powershell
+python .\AB_Testing\ab_pipeline.py
+python -m streamlit run .\AB_Testing\app_ab.py --server.port 8519
+```
+
 ## Recruiter Snapshot / Snapshot para Reclutadores
 
 - ES: Implementacion de ciclos completos de machine learning con foco en uso real.
@@ -94,9 +104,9 @@ python -m streamlit run .\PCA\app_pca.py --server.port 8515
 
 ## LinkedIn-Ready Summary / Resumen Listo para LinkedIn
 
-ES: Portfolio de Machine Learning aplicado con proyectos de clasificacion de spam, prediccion de costos cloud, evaluacion de riesgo crediticio con Regresion Logistica y segmentacion de usuarios con PCA. Incluye pipelines reproducibles, despliegue en Streamlit y documentacion operativa para ejecucion y mantenimiento.
+ES: Portfolio de Machine Learning aplicado con proyectos de clasificacion de spam, prediccion de costos cloud, evaluacion de riesgo crediticio con Regresion Logistica, segmentacion de usuarios con PCA y A/B Testing con ML para experimentacion de producto. Incluye pipelines reproducibles, despliegue en Streamlit y documentacion operativa para ejecucion y mantenimiento.
 
-EN: Applied Machine Learning portfolio featuring spam classification, cloud cost forecasting, credit risk scoring with Logistic Regression, and PCA-based user segmentation. Includes reproducible pipelines, Streamlit deployment, and operational documentation for execution and maintenance.
+EN: Applied Machine Learning portfolio featuring spam classification, cloud cost forecasting, credit risk scoring with Logistic Regression, PCA-based user segmentation, and ML-powered A/B testing for product experimentation. Includes reproducible pipelines, Streamlit deployment, and operational documentation for execution and maintenance.
 
 ## Documentation Map / Mapa de Documentacion
 
