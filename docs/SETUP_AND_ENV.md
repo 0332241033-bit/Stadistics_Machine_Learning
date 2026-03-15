@@ -13,6 +13,8 @@ EN: Unified guide to prepare the entire repository.
 - EN: Train and serve `Naive_Bayes/`.
 - ES: Correr prediccion de costos en `Linear_Regression/`.
 - EN: Run cloud cost prediction in `Linear_Regression/`.
+- ES: Evaluar riesgo crediticio en `Logistic_regression/`.
+- EN: Run credit risk scoring in `Logistic_regression/`.
 - ES: Ejecutar pipeline y app de `PCA/`.
 - EN: Run pipeline and app in `PCA/`.
 
@@ -76,6 +78,13 @@ python .\PCA\pca_pipeline.py
 python -m streamlit run .\PCA\app_pca.py --server.port 8515
 ```
 
+### Logistic Regression
+
+```powershell
+python .\Logistic_regression\credit_pipeline.py
+python -m streamlit run .\Logistic_regression\app_credit.py --server.port 8518
+```
+
 ## 5) Notebook Kernel / Kernel de Notebooks
 
 - ES: Selecciona `.venv` como interprete del notebook.
@@ -90,4 +99,6 @@ python -m streamlit run .\PCA\app_pca.py --server.port 8515
 | Naive_Bayes | `spam_model.pkl`, `vectorizer.pkl` |
 | Linear_Regression | `billing_model.pkl`, `cloud_billing.csv` |
 | Linear_Regression app | `proyeccion_costos.pdf` |
+| Logistic_regression | `credit_model.pkl`, `credit_scaler.pkl`, `credit_data.csv` |
+| Logistic_regression app | `dictamen_credito.pdf` |
 | PCA | `PCA/scaler.pkl`, `PCA/pca_model.pkl`, `PCA/user_segments.csv` |

@@ -56,21 +56,37 @@ python .\PCA\user_data_factory.py
 python .\PCA\pca_pipeline.py
 ```
 
-## 8) Missing `fpdf` module
+## 8) Missing `credit_model.pkl` or `credit_scaler.pkl`
+
+ES: Ejecuta el pipeline de credito para generar las dependencias del modelo.
+EN: Run the credit pipeline to generate model dependencies.
+
+```powershell
+python .\Logistic_regression\credit_pipeline.py
+```
+
+## 9) `Logistic_regression/app_credit.py` model missing at startup
+
+```powershell
+python .\Logistic_regression\credit_pipeline.py
+python -m streamlit run .\Logistic_regression\app_credit.py --server.port 8518
+```
+
+## 10) Missing `fpdf` module
 
 ```powershell
 python -m pip install fpdf
 ```
 
-## 9) Notebook `NameError`
+## 11) Notebook `NameError`
 
 - ES: Ejecuta celdas de arriba a abajo y usa kernel `.venv`.
 - EN: Execute top-to-bottom and use the `.venv` kernel.
 
-## 10) Streamlit port already in use / Puerto ocupado
+## 12) Streamlit port already in use / Puerto ocupado
 
 ```powershell
-python -m streamlit run .\Naive_Bayes\Model\app.py --server.port 8518
+python -m streamlit run .\Naive_Bayes\Model\app.py --server.port 8519
 ```
 
 ## Quick Diagnostics / Diagnostico Rapido
@@ -81,6 +97,8 @@ python -m pip list | Select-String "streamlit|scikit-learn|joblib|pandas|numpy|f
 Test-Path .\spam_model.pkl
 Test-Path .\vectorizer.pkl
 Test-Path .\billing_model.pkl
+Test-Path .\credit_model.pkl
+Test-Path .\credit_scaler.pkl
 Test-Path .\PCA\scaler.pkl
 Test-Path .\PCA\pca_model.pkl
 ```

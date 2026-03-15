@@ -11,11 +11,13 @@ EN: Execute by objective, not by isolated files.
 flowchart TD
     A[What do you want to do? / Que quieres hacer?] --> B[Spam detection]
     A --> C[Cloud cost prediction]
+    A --> F[Credit risk scoring]
     A --> D[PCA user projection]
     A --> E[Notebook exploration]
 
     B --> B1[Naive_Bayes/Model]
     C --> C1[Linear_Regression]
+    F --> F1[Logistic_regression]
     D --> D1[PCA]
     E --> E1[Algorimths + Naive_Bayes/Scratch]
 ```
@@ -67,7 +69,20 @@ Expected / Esperado:
 - `PCA/scaler.pkl`, `PCA/pca_model.pkl`, `PCA/user_segments.csv`
 - scatter plot and projected coordinates
 
-## Workflow 4: Notebook Learning Path / Ruta de Aprendizaje
+## Workflow 4: Logistic Regression Credit Scoring
+
+```powershell
+python .\Logistic_regression\credit_pipeline.py
+python -m streamlit run .\Logistic_regression\app_credit.py --server.port 8518
+```
+
+Expected / Esperado:
+
+- `credit_data.csv` generated
+- `credit_model.pkl` and `credit_scaler.pkl` saved
+- Streamlit credit evaluation app with PDF ruling download
+
+## Workflow 5: Notebook Learning Path / Ruta de Aprendizaje
 
 1. `Algorimths/Bayesian_inference_engine.ipynb`
 2. `Algorimths/Digital_sensor.ipynb`
@@ -78,11 +93,11 @@ Expected / Esperado:
 7. `Algorimths/Naive_Bayes_Multinomial.ipynb`
 8. `Naive_Bayes/Scratch/Naive_Bayes.ipynb`
 
-## Workflow 5: Publish Docs / Publicar Documentacion
+## Workflow 6: Publish Docs / Publicar Documentacion
 
 ```powershell
 git status
-git add README.md docs/ Algorimths/README.md Linear_Regression/README.md Naive_Bayes/README.md PCA/README.md
+git add README.md docs/ Algorimths/README.md Linear_Regression/README.md Logistic_regression/README.md Naive_Bayes/README.md PCA/README.md
 git commit -m "docs: add bilingual ES-EN docs"
 git push
 ```

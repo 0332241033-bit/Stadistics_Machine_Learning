@@ -31,6 +31,7 @@ flowchart LR
 | --- | --- |
 | Algorimths | [../Algorimths/README.md](../Algorimths/README.md) |
 | Linear_Regression | [../Linear_Regression/README.md](../Linear_Regression/README.md) |
+| Logistic_regression | [../Logistic_regression/README.md](../Logistic_regression/README.md) |
 | Naive_Bayes | [../Naive_Bayes/README.md](../Naive_Bayes/README.md) |
 | PCA | [../PCA/README.md](../PCA/README.md) |
 

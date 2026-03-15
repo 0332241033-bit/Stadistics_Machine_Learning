@@ -130,4 +130,44 @@ flowchart LR
     PP --> PM[pca_model.pkl]
     PM --> PAPP[app_pca.py]
     SC --> PAPP
+
+    CP[credit_pipeline.py] --> CD[credit_data.csv]
+    CP --> CM[credit_model.pkl]
+    CP --> CS[credit_scaler.pkl]
+    CM --> LGAPP[app_credit.py]
+    CS --> LGAPP
+    LGAPP --> CPDF[dictamen_credito.pdf]
 ```
+
+## 4) Logistic_regression Module / Modulo Logistic_regression
+
+### `Logistic_regression/credit_pipeline.py`
+
+| Field / Campo | Value / Valor |
+| --- | --- |
+| Main function / Funcion principal | `setup_credit_project()` |
+| Generated dataset / Dataset generado | `credit_data.csv` |
+| Features | `ingresos_anuales`, `edad`, `puntaje_buro`, `deuda_actual`, `historial_atrasos` |
+| Target | `riesgo` (`0 aprobado / 1 rechazado`) |
+| Preprocessing / Preprocesamiento | `StandardScaler` |
+| Model / Modelo | `LogisticRegression` |
+| Metrics / Metricas | `classification_report`, `confusion_matrix` |
+| Artifacts / Artefactos | `credit_model.pkl`, `credit_scaler.pkl` |
+
+### `Logistic_regression/app_credit.py`
+
+| Field / Campo | Value / Valor |
+| --- | --- |
+| Framework | Streamlit |
+| Requirement / Requisito | `credit_model.pkl`, `credit_scaler.pkl` |
+| Flow / Flujo | inputs -> scale -> predict_proba -> decision -> PDF download |
+| Decision logic / Logica de decision | `prediction == 1` -> RECHAZADO, `prediction == 0` -> APROBADO |
+| Safe failure / Falla controlada | `st.stop()` if models missing |
+
+### `Logistic_regression/credit_report.py`
+
+| Field / Campo | Value / Valor |
+| --- | --- |
+| Class / Clase | `CreditReport(FPDF)` |
+| Function / Funcion | `generate_credit_pdf(inputs, result, probability)` |
+| Output / Salida | `dictamen_credito.pdf` |
